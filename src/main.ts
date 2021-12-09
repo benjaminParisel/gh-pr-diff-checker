@@ -38,13 +38,11 @@ async function run() {
                 })
             })
         })
-        console.log('### before', changes);
         // Check that the pull request diff does not contain the forbidden string
         let inputStringDiff: string = core.getInput('diffDoesNotContain')
-        console.log('### diffDoesNotContain', inputStringDiff);
         let diffDoesNotContain: Array<string> = JSON.parse(inputStringDiff);
         if (diffDoesNotContain.length > 0 && diffDoesNotContain.some(pattern => changes.includes(pattern))) {
-            core.setFailed(`The PR diff should not include one of ${diffDoesNotContain.toString()}`);
+            core.setFailed(`The PR should not include one of ${diffDoesNotContain.toString()}`);
         }
 
     } catch (error: any) {
