@@ -7,7 +7,7 @@ inputs:
   diffDoesNotContain:
     description: 'Array String that must not be in the PR diff'
     required: true
-  extensionToCheck:
+  extensionsToCheck:
     description: 'Put extensions to check ex: `[".adoc",".yml"]`'
     required: false
 
