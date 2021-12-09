@@ -8,7 +8,7 @@ inputs:
     description: 'Array String that must not be in the PR diff'
     required: true
   extensionToCheck:
-    description: 'Put extensions to check ex: .adoc'
+    description: 'Put extensions to check ex: `[".adoc",".yml"]`'
     required: false
 
 runs:

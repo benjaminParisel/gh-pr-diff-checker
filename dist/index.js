@@ -8528,11 +8528,11 @@ function run() {
                 },
             });
             let files = parse(prDiff);
-            let filteredExtension = core.getInput("extensionToCheck");
+            let filteredExtensions = JSON.parse(core.getInput("extensionsToCheck"));
             let changes = '';
             // Get chunk only for file who follow the extensions input
-            if (filteredExtension) {
-                files = files.filter(file => file.to.includes(filteredExtension));
+            if (filteredExtensions.length > 0) {
+                files = files.filter(file => filteredExtensions.some(v => file.to.includes(v).includes(v)));
             }
             files.forEach(function (file) {
                 // Get changed chunks
@@ -8549,12 +8549,8 @@ function run() {
             let inputStringDiff = core.getInput('diffDoesNotContain');
             console.log('### diffDoesNotContain', inputStringDiff);
             let diffDoesNotContain = JSON.parse(inputStringDiff);
-            if (diffDoesNotContain.length > 0) {
-                diffDoesNotContain.forEach(pattern => {
-                    if (changes.includes(pattern)) {
-                        core.setFailed(`The PR diff should not include one of ${diffDoesNotContain.toString()}`);
-                    }
-                });
+            if (diffDoesNotContain.length > 0 && diffDoesNotContain.some(pattern => changes.includes(pattern))) {
+                core.setFailed(`The PR diff should not include one of ${diffDoesNotContain.toString()}`);
             }
         }
         catch (error) {
