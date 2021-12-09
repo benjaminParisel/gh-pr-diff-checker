@@ -28,8 +28,7 @@ async function run() {
         if(filteredExtension){
             files = files.filter(file => file.to.includes(filteredExtension))
         }
-        files.filter(file => filteredExtension && file.includes(filteredExtension))
-            .forEach(function(file) {
+        files.forEach(function(file) {
             // Get changed chunks
             file.chunks.forEach(function(chunk) {
                 chunk.changes.forEach(function(change) {
