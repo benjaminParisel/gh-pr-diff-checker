@@ -8540,7 +8540,8 @@ function run() {
                 });
             });
             // Check that the pull request diff does not contain the forbidden string
-            let diffDoesNotContain = core.getInput('diffDoesNotContain');
+            let inputStringDiff = core.getInput('diffDoesNotContain');
+            let diffDoesNotContain = JSON.parse(inputStringDiff);
             if (diffDoesNotContain.length > 0) {
                 diffDoesNotContain.forEach(pattern => {
                     if (changes.includes(pattern)) {
