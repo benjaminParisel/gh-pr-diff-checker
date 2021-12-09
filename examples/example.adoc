@@ -3,5 +3,5 @@
 
 In this file, we can test our GitHub pr diff checker.
 
-I'm happy example
+I'm happy example link:
 
