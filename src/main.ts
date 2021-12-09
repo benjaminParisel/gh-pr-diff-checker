@@ -9,9 +9,10 @@ async function run() {
         const octokit = github.getOctokit(token)
         const context = github.context
         console.log('### PR number', context.payload.pull_request.number, context);
-        console.log('## octokit', octokit.pulls);
+        console.log('## octokit', octokit);
+
         // Request the pull request diff from the GitHub API
-        const { data: prDiff } = await octokit.pulls.get({
+        const { data: prDiff } = await octokit.rest.pulls.get({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: context.payload.pull_request.number,
