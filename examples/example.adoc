@@ -1,0 +1,5 @@
+= First example
+
+
+In this file, we can test our GitHub pr diff checker. For example, if i try to use https://documentation.mydomain, the action will be failed on PR.
+

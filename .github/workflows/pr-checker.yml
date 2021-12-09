@@ -1,0 +1,14 @@
+name: Check PR content
+
+on: [pull_request]
+
+jobs:
+  check_pr:
+    runs-on: ubuntu-latest
+    name: Check for forbidden string
+    steps:
+      - name: Scan forbidden string
+        uses: benjaminParisel/gh-pr-diff-checker@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          diffDoesNotContain: ['http://documentation.mydomain','link:']
