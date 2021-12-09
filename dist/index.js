@@ -8518,7 +8518,8 @@ function run() {
             const token = core.getInput('github-token', { required: true });
             const octokit = github.getOctokit(token);
             const context = github.context;
-            console.log('### PR number', context.payload.pull_request.number);
+            console.log('### PR number', context.payload.pull_request.number, context);
+            console.log('## octokit', octokit.pulls);
             // Request the pull request diff from the GitHub API
             const { data: prDiff } = yield octokit.pulls.get({
                 owner: context.repo.owner,
@@ -8528,6 +8529,7 @@ function run() {
                     format: "diff",
                 },
             });
+            console.log('## PR diff', prDiff);
             const files = parse(prDiff);
             // Get changed chunks
             let changes = '';
