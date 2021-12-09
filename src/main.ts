@@ -33,8 +33,8 @@ async function run() {
         })
 
         // Check that the pull request diff does not contain the forbidden string
-        let diffDoesNotContain :Array<string> = core.getInput('diffDoesNotContain')
-
+        let inputStringDiff :string = core.getInput('diffDoesNotContain')
+        let diffDoesNotContain: Array<string> = JSON.parse(inputStringDiff);
         if (diffDoesNotContain.length > 0) {
             diffDoesNotContain.forEach(pattern => {
                 if (changes.includes(pattern)) {

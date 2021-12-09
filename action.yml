@@ -5,7 +5,7 @@ inputs:
     description: 'Github token, added magically'
     required: true
   diffDoesNotContain:
-    description: 'Arrays of string that must not be in the PR diff'
+    description: 'Array String that must not be in the PR diff'
     required: true
 
 runs:

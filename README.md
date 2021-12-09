@@ -20,7 +20,7 @@ jobs:
         uses: benjaminParisel/gh-pr-diff-checker@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          diffDoesNotContain: ['http://documentation.mydomain','link:']
+          diffDoesNotContain: "['http://documentation.mydomain','link:']"
 ```
 
 An example is also provided in .github/workflows/ in this repository.
