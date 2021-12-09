@@ -26,7 +26,7 @@ async function run() {
         let changes = ''
         // Get chunk only for file who follow the extensions input
         if (filteredExtensions.length > 0) {
-            files = files.filter(file => filteredExtensions.some(v => file.to.includes(v).includes(v)));
+            files = files.filter(file => filteredExtensions.some(v => file.to.includes(v)));
         }
         files.forEach(function (file) {
             // Get changed chunks
