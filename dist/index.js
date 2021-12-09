@@ -8518,8 +8518,6 @@ function run() {
             const token = core.getInput('github-token', { required: true });
             const octokit = github.getOctokit(token);
             const context = github.context;
-            console.log('### PR number', context.payload.pull_request.number, context);
-            console.log('## octokit', octokit);
             // Request the pull request diff from the GitHub API
             const { data: prDiff } = yield octokit.rest.pulls.get({
                 owner: context.repo.owner,
@@ -8529,11 +8527,16 @@ function run() {
                     format: "diff",
                 },
             });
-            console.log('## PR diff', prDiff);
-            const files = parse(prDiff);
-            // Get changed chunks
+            let files = parse(prDiff);
+            let filteredExtension = core.getInput("extensionToCheck");
             let changes = '';
-            files.forEach(function (file) {
+            // Get chunk only for file who follow the extensions input
+            if (filteredExtension) {
+                files = files.filter(file => file.includes(filteredExtension));
+            }
+            files.filter(file => filteredExtension && file.includes(filteredExtension))
+                .forEach(function (file) {
+                // Get changed chunks
                 file.chunks.forEach(function (chunk) {
                     chunk.changes.forEach(function (change) {
                         if (change.add) {

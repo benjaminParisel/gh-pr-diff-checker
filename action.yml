@@ -7,6 +7,9 @@ inputs:
   diffDoesNotContain:
     description: 'Array String that must not be in the PR diff'
     required: true
+  extensionToCheck:
+    description: 'Put extensions to check ex: .adoc'
+    required: false
 
 runs:
   using: 'node12'

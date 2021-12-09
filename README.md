@@ -21,6 +21,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           diffDoesNotContain: "['http://documentation.mydomain','link:']"
+          extensionToCheck: ".adoc"
 ```
 
 An example is also provided in .github/workflows/ in this repository.
