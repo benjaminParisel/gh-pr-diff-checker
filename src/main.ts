@@ -21,7 +21,6 @@ async function run() {
 
         let files = parse(prDiff)
 
-
         let filteredExtensions = JSON.parse(core.getInput("extensionsToCheck"));
         let changes = ''
         // Get chunk only for file who follow the extensions input
