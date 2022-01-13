@@ -4,16 +4,14 @@ export type prDiffResult  = {
     isDiffValid : boolean,
     message: string
 }
-export function validate(files: parseDiff.File[], filteredExtensions: Array<string>, diffDoesNotContain: Array<string>) : prDiffResult{
+export function validate(files: parseDiff.File[], filteredExtensions: Array<string>, forbiddenPattern: Array<string>) : prDiffResult{
     let changes = ''
     // Get chunk only for file who follow the extensions input
     if (filteredExtensions.length > 0) {
         files = files.filter( (file)=> filteredExtensions.some(v => file.to?.includes(v)));
     }
-    console.log('files', files);
     files.forEach(function (file) {
         // Get changed chunks
-        console.log('chunks', file.chunks);
         file.chunks.forEach(function (chunk) {
             chunk.changes.forEach(function (change) {
                 if (change['add']) {
@@ -23,10 +21,9 @@ export function validate(files: parseDiff.File[], filteredExtensions: Array<stri
         })
     });
 
-    if (diffDoesNotContain.length > 0 && diffDoesNotContain.some(pattern => changes.includes(pattern))) {
-        return {'isDiffValid' : false, message: ''};
-        //core.setFailed(`The PR should not include one of ${diffDoesNotContain.toString()}`);
+    if (forbiddenPattern.length > 0 && forbiddenPattern.some(pattern => changes.includes(pattern))) {
+        return {'isDiffValid' : false, message: `The PR should not include one of ${forbiddenPattern.toString()}`};
     }
-    return {'isDiffValid' : true, message: ''};
+    return {'isDiffValid' : true, message: 'No forbidden word was found in this PR'};
 
 }
