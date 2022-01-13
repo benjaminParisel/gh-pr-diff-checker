@@ -20,8 +20,9 @@ async function run() {
         });
 
         let files = parse(prDiff)
-
+        console.log('## files', files);
         let filteredExtensions = JSON.parse(core.getInput("extensionsToCheck"));
+        console.log('## filteredExtensions', filteredExtensions);
         let changes = ''
         // Get chunk only for file who follow the extensions input
         if (filteredExtensions.length > 0) {
@@ -29,6 +30,7 @@ async function run() {
         }
         files.forEach(function (file) {
             // Get changed chunks
+            console.log('## file',file);
             file.chunks.forEach(function (chunk) {
                 chunk.changes.forEach(function (change) {
                     if (change.add) {
