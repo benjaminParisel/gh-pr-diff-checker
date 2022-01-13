@@ -8541,6 +8541,7 @@ function run() {
                 console.log('## file', file);
                 file.chunks.forEach(function (chunk) {
                     chunk.changes.forEach(function (change) {
+                        console.log('chunks', change);
                         if (change.add) {
                             changes += change.content;
                         }
