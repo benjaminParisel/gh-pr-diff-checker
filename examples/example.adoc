@@ -3,3 +3,4 @@
 
 In this file, we can test our GitHub pr diff checker.
 
+== Added in 7.10
