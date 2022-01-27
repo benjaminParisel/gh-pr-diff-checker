@@ -1,0 +1,24 @@
+name: Sync multiple branches
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: Branch to merge
+        default: 7.10
+        required: true
+      target:
+        description: into
+        default: 7.11
+        required: true
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge development -> staging
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          from_branch: ${{ github.event.inputs.from }}
+          target_branch: ${{ github.event.inputs.target }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
