@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Merge development -> staging
+      - name: Merge ${{ github.event.inputs.from }} ->  ${{ github.event.inputs.target }}
         uses: devmasx/merge-branch@1.4.0
         with:
           type: now
